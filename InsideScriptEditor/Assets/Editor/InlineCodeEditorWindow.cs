@@ -5,19 +5,27 @@ using UnityEngine;
 
 public class InlineCodeEditorWindow : EditorWindow
 {
-
     string text = "";
+    string label = "";
 
-    [MenuItem("Window/Text Editor")]
-    static void Init()
+    public InlineCodeEditorWindow Init(string label, string type)
     {
+        this.label = label;
+
         InlineCodeEditorWindow window = (InlineCodeEditorWindow)GetWindow(typeof(InlineCodeEditorWindow));
-        window.Show();
+        window.text = AssemblyGrabber.assembly.CodeBase.ToString();
+        return window;
     }
 
     void OnGUI()
     {
+        GUILayout.Label(label, EditorStyles.boldLabel);
         text = EditorGUILayout.TextArea(text, GUILayout.ExpandHeight(true));
+        
+        if (GUILayout.Button("Save"))
+        {
+            
+        }
     }
 }
 

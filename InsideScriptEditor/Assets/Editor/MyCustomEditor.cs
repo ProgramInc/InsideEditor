@@ -1,16 +1,20 @@
 using UnityEditor;
 using UnityEngine;
 
-[CustomEditor(typeof(MyCustomEditor<>))]
-public class MyCustomEditor<T> : Editor where T : MonoBehaviour
+[CustomEditor(typeof(MonoBehaviour), true), CanEditMultipleObjects]
+public class MyCustomEditor: Editor 
 {
     public override void OnInspectorGUI()
     {
         base.OnInspectorGUI();
 
-        if (GUILayout.Button("Custom Button"))
+        if (GUILayout.Button("Edit In Unity"))
         {
-            Debug.Log("Custom button clicked on " + typeof(T).Name);
+            InlineCodeEditorWindow window = CreateInstance<InlineCodeEditorWindow>();
+            GUIContent content = new GUIContent();
+            content.text = target.GetType().ToString();
+            window.titleContent = content;
+            window.Init("", content.text);
         }
     }
 }
