@@ -14,6 +14,13 @@ public class InlineCodeEditorWindow : EditorWindow
 
         InlineCodeEditorWindow window = (InlineCodeEditorWindow)GetWindow(typeof(InlineCodeEditorWindow));
         window.text = AssemblyGrabber.assembly.CodeBase.ToString();
+        Debug.Log(AssetDatabase.LoadAssetAtPath<MonoBehaviour>("/"+type));
+        Debug.Log(AssemblyGrabber.assembly.GetFile(type+".cs"));
+        /*Debug.Log();
+        Debug.Log();
+        Debug.Log();
+        Debug.Log();
+        Debug.Log();*/
         return window;
     }
 
