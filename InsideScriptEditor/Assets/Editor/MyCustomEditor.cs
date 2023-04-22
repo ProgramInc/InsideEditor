@@ -2,7 +2,7 @@ using UnityEditor;
 using UnityEngine;
 
 [CustomEditor(typeof(MonoBehaviour), true), CanEditMultipleObjects]
-public class MyCustomEditor: Editor 
+public class MyCustomEditor : Editor
 {
     public override void OnInspectorGUI()
     {
@@ -10,11 +10,11 @@ public class MyCustomEditor: Editor
 
         if (GUILayout.Button("Edit In Unity"))
         {
-            InlineCodeEditorWindow window = CreateInstance<InlineCodeEditorWindow>();
+            TestEditorWindow window = CreateInstance<TestEditorWindow>();
             GUIContent content = new GUIContent();
             content.text = target.GetType().ToString();
             window.titleContent = content;
-            window.Init("", content.text);
+            window.Init(content.text, "");
         }
     }
 }
